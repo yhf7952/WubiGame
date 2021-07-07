@@ -17,7 +17,7 @@ yarn install
 //启动项目
 yarn serve
 //发布项目
-yarn serve
+yarn build
 ```
 
 ### 下载发布版本 
