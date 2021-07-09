@@ -85,4 +85,6 @@ body{margin:0; padding: 0;}
   color:"#fff";
 }
 .el-menu-demo{float: left;}
+
+body {min-width:620px}
 </style>
