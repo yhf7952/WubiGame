@@ -14,6 +14,7 @@
           <el-menu-item index="1">字根练习</el-menu-item>
           <el-menu-item index="2">一级简码</el-menu-item>
           <el-menu-item index="3">二级简码</el-menu-item>
+          <el-menu-item index="4" style="color:#F56C6C;"><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
         </el-menu>
         </el-col>
       </el-row>
