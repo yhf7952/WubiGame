@@ -36,7 +36,7 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站 {{windowWidth}}</a></el-footer>
+    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站</a></el-footer>
   </el-container>
 </template>
 
