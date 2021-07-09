@@ -11,11 +11,20 @@
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b">
-          <el-menu-item index="1">字根练习</el-menu-item>
-          <el-menu-item index="2">一级简码</el-menu-item>
-          <el-menu-item index="3">二级简码</el-menu-item>
-          <el-menu-item index="4" style="color:#F56C6C;"><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
-        </el-menu>
+            <el-submenu index="0" v-if="windowWidth < 640">
+              <template slot="title"><i style="color:#fff" class="el-icon-s-unfold"></i></template>
+              <el-menu-item index="1">字根练习</el-menu-item>
+              <el-menu-item index="2">一级简码</el-menu-item>
+              <el-menu-item index="3">二级简码</el-menu-item>
+              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
+            </el-submenu>
+            <template v-else>
+              <el-menu-item index="1">字根练习</el-menu-item>
+              <el-menu-item index="2">一级简码</el-menu-item>
+              <el-menu-item index="3">二级简码</el-menu-item>
+              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
+            </template>
+          </el-menu>
         </el-col>
       </el-row>
 
@@ -27,7 +36,7 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站</a></el-footer>
+    <el-footer style="text-align:center">&copy; {{new Date().getFullYear()}} <a href="https://yantuz.cn/">岩兔站 {{windowWidth}}</a></el-footer>
   </el-container>
 </template>
 
@@ -41,14 +50,15 @@ export default {
       return {
         activeIndex: '1',
         gameModel: 'zigen',
+        windowWidth: 640
       };
     },
   components: {
     Game
   },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      handleSelect(key) {
+        //console.log(key);
         switch(key){
           case "1":
             this.gameModel = "zigen";
@@ -61,6 +71,13 @@ export default {
             break;
         }
       }
+    },
+    mounted() {
+      window.onresize = () => {
+        return (() => {
+          this.windowWidth = document.body.clientWidth;
+        })();
+      };
     }
 }
 </script>
@@ -85,6 +102,4 @@ body{margin:0; padding: 0;}
   color:"#fff";
 }
 .el-menu-demo{float: left;}
-
-body {min-width:620px}
 </style>

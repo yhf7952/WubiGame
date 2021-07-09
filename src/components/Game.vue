@@ -39,7 +39,7 @@
                     <div class="rootImg"><img src="../assets/root.png" /></div>
                 </el-collapse-item>
                 <el-collapse-item  title="一级简码" name="2">
-                    <el-table style="width: 100%" :data="tableData" :row-class-name="tableRowClassName">
+                    <el-table style="width: 100%" :data="tableData" >
                         <el-table-column prop="t1" label="横区"></el-table-column>
                         <el-table-column prop="t2" label="竖区"></el-table-column>
                         <el-table-column prop="t3" label="撇区"></el-table-column>
@@ -84,11 +84,6 @@
 .rootImg img{
     max-width: 100%;
 }
-
-@media screen and (max-width: 600px){
-    
-}
-
 </style>
 
 <script>
