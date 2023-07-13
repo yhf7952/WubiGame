@@ -1,38 +1,43 @@
 <template>
   <el-container>
-    <el-header class="el-menu-demo">
-      <el-row>
-        <el-col style="color:#fff" :xs="24" :sm="{span:20, offset: 2}" :md="{span: 18, offset: 3}" :xl="{span: 12, offset: 6}" ><h1 style="margin:0 20px; float:left; line-height:60px">五笔练习</h1>
-        <el-menu
-          :default-active="activeIndex"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b">
-            <el-submenu index="0" v-if="windowWidth < 640">
-              <template slot="title"><i style="color:#fff" class="el-icon-s-unfold"></i></template>
-              <el-menu-item index="1">字根练习</el-menu-item>
-              <el-menu-item index="2">一级简码</el-menu-item>
-              <el-menu-item index="3">二级简码</el-menu-item>
-              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
-            </el-submenu>
-            <template v-else>
-              <el-menu-item index="1">字根练习</el-menu-item>
-              <el-menu-item index="2">一级简码</el-menu-item>
-              <el-menu-item index="3">二级简码</el-menu-item>
-              <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
-            </template>
-          </el-menu>
-        </el-col>
-      </el-row>
-
+    <el-header>
+      <h1 style="margin:0 20px; float:left; line-height:60px">五笔练习</h1>
+      <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b">
+          <el-submenu index="0" v-if="windowWidth < 740">
+            <template slot="title"><i style="color:#fff" class="el-icon-s-unfold"></i></template>
+            <el-menu-item index="1">字根练习</el-menu-item>
+            <el-menu-item index="2">一级简码</el-menu-item>
+            <el-menu-item index="3">二级简码</el-menu-item>
+            <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
+          </el-submenu>
+          <template v-else>
+            <el-menu-item index="1">字根练习</el-menu-item>
+            <el-menu-item index="2">一级简码</el-menu-item>
+            <el-menu-item index="3">二级简码</el-menu-item>
+            <el-menu-item index="4" ><i style="color:#F56C6C;" class="el-icon-document"></i><a href="https://wubi.yantuz.cn" style="color:#F56C6C; text-decoration: none;" target="_blank"><b>五笔7天速成</b></a></el-menu-item>
+          </template>
+        </el-menu>
+        <el-dropdown class="wubi-version-dropdown" @command="toggleVersion">
+          <span class="dropdown-text">
+            {{ wubiVersion }} 版本<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="86">86 版本</el-dropdown-item>
+            <el-dropdown-item command="98">98 版本</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
     </el-header>
     <el-main>
       <el-row>
         <el-col :xs="24" :sm="{span:20, offset: 2}" :md="{span: 18, offset: 3}" :xl="{span: 12, offset: 6}" >
-          <Game :gameModel = this.gameModel />
+          <Game :gameModel="gameModel" :wubiVersion="wubiVersion" />
         </el-col>
       </el-row>
     </el-main>
@@ -50,7 +55,8 @@ export default {
       return {
         activeIndex: '1',
         gameModel: 'zigen',
-        windowWidth: 640
+        wubiVersion: '86',
+        windowWidth: 740,
       };
     },
   components: {
@@ -70,7 +76,10 @@ export default {
             this.gameModel = "erji";
             break;
         }
-      }
+      },
+      toggleVersion(command) {
+        this.wubiVersion = command;
+      },
     },
     mounted() {
       window.onresize = () => {
@@ -78,6 +87,8 @@ export default {
           this.windowWidth = document.body.clientWidth;
         })();
       };
+
+      this.windowWidth = document.body.clientWidth;
     }
 }
 </script>
@@ -97,9 +108,24 @@ body{margin:0; padding: 0;}
   margin-top:0;
 }
 .el-header{
+  display: flex;
+  justify-content: space-around;
   background: #545c64;
   height: 80px;
-  color:"#fff";
+  padding: 0 40px;
+  color: #fff;
 }
 .el-menu-demo{float: left;}
+.wubi-version-dropdown {
+  float: right;
+  line-height: 60px;
+}
+.dropdown-text {
+  color: #fff;
+  cursor: pointer;
+}
+.dropdown-text:hover {
+  color: #66b1ff;
+  transition: .2s;
+}
 </style>
