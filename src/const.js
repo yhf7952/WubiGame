@@ -28,6 +28,7 @@ export const list86 = {
 };
 
 // 98 字根（需要安装 98WB-1 字体）
+// 字体来源：https://github.com/yanhuacuo/98wubi-tables/tree/master/98%E4%BA%94%E7%AC%94%E6%8B%86%E5%88%86%E6%98%A0%E5%B0%84%E8%A1%A8/%E6%80%9D%E6%BA%90%E5%AD%97%E6%A0%B9
 export const list98 = {
   "g": ["王", "一", "󰁽", "󰀞", "五", "夫", "󰀠", "󰀟", "󰀡", "󰂅"],
   "f": ["土", "士", "干", "二", "十", "󰀛", "󰀜", "寸", "甘", "雨", "󰀙", "未"],
